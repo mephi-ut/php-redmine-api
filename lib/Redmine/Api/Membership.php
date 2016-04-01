@@ -49,9 +49,13 @@ class Membership extends AbstractApi
             throw new \Exception('Missing mandatory parameters');
         }
 
-        $xml = $this->buildXML($params);
+	$params_full['membership'] = $params;
+	$json = json_encode($params_full);
+	return $this->post('/projects/'.$project.'/memberships.json', $json);
 
-        return $this->post('/projects/'.$project.'/memberships.xml', $xml->asXML());
+//        $xml = $this->buildXML($params);
+
+//        return $this->post('/projects/'.$project.'/memberships.xml', $xml->asXML());
     }
 
     /**
@@ -72,9 +76,16 @@ class Membership extends AbstractApi
             throw new \Exception('Missing mandatory parameters');
         }
 
-        $xml = $this->buildXML($params);
 
-        return $this->put('/memberships/'.$id.'.xml', $xml->asXML());
+	$params_full['membership'] = $params;
+
+//	$print_r ($params_full['membership']); die();
+	$json = json_encode($params_full);
+	return $this->put('/memberships/'.$id.'.json', $json);
+
+//        $xml = $this->buildXML($params);
+
+//        return $this->put('/memberships/'.$id.'.xml', $xml->asXML());
     }
 
     /**

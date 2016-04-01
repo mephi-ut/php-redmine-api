@@ -123,11 +123,11 @@ class Issue extends AbstractApi
         $params = $this->cleanParams($params);
         $params = array_filter(array_merge($defaults, $params));
 
-        $xml = $this->buildXML($params);
+       // $xml = $this->buildXML($params);
 
-        return $this->post('/issues.xml', $xml->asXML());
-        // $json = json_encode(array('issue' => $params));
-        // return $this->post('/issues.json', $json);
+        //return $this->post('/issues.xml', $xml->asXML());
+        $json = json_encode(array('issue' => $params));
+        return $this->post('/issues.json', $json);
     }
 
     /**
@@ -174,7 +174,9 @@ class Issue extends AbstractApi
      */
     public function addWatcher($id, $watcher_user_id)
     {
-        return $this->post('/issues/'.$id.'/watchers.xml', '<user_id>'.$watcher_user_id.'</user_id>');
+	$json = json_encode (array('user_id' => $watcher_user_id));
+
+        return $this->post('/issues/'.$id.'/watchers.json', $json);
     }
 
     /**

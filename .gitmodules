@@ -1,0 +1,3 @@
+[submodule "lib/3rdparty/php-redmine-api"]
+	path = lib/3rdparty/php-redmine-api
+	url = https://github.com/kbsali/php-redmine-api
