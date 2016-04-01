@@ -162,9 +162,13 @@ class Issue extends AbstractApi
         $params = $this->cleanParams($params);
         $params = array_filter(array_merge($defaults, $params));
 
+//	print_r($params);
         $xml = $this->buildXML($params);
+	$json = json_encode(array('issue' => $params));
+//	print_r($json);
+//	print("\n");
 
-        return $this->put('/issues/'.$id.'.xml', $xml->asXML());
+        return $this->put('/issues/'.$id.'.json', $json);
     }
 
     /**
